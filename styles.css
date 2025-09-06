@@ -463,18 +463,17 @@ main {
 }
 
 .skill-tag {
-    background: linear-gradient(135deg, #F76C68, #2E1919);
+    background-color: #2E1919;
     color: white;
     padding: 8px 16px;
     border-radius: 20px;
     font-size: 0.9rem;
     font-weight: 500;
-    transition: transform 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
 .skill-tag:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    background-color: #e74c3c;
 }
 
 /* Project grid */
@@ -518,12 +517,17 @@ main {
 }
 
 .tech-tag {
-    background: linear-gradient(135deg, #F76C68, #2E1919);
+    background-color: #2E1919;
     color: white;
     padding: 4px 12px;
     border-radius: 15px;
     font-size: 0.8rem;
     font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.tech-tag:hover {
+    background-color: #e74c3c;
 }
 
 .project-card p {
