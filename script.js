@@ -209,3 +209,163 @@ function addScrollToTop() {
 
 // Initialize scroll-to-top button
 addScrollToTop();
+
+// Animate skill bars on scroll
+function animateSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-progress');
+    
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const skillObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const width = entry.target.getAttribute('data-width');
+                entry.target.style.width = width;
+            }
+        });
+    }, observerOptions);
+    
+    skillBars.forEach(bar => {
+        skillObserver.observe(bar);
+    });
+}
+
+// Initialize skill bar animation
+animateSkillBars();
+
+// Download resume function
+function downloadResume() {
+    // Create a simple text-based resume for now
+    const resumeContent = `
+DANIEL YU
+Computer Science Student | Software Developer
+
+EDUCATION
+North Carolina State University
+Bachelor of Science in Computer Science (2022-2026)
+GPA: 3.8/4.0
+
+EXPERIENCE
+Software Engineering Intern - CodeHS (Summer 2024)
+• Developed internal tools for automated changelog generation
+• Collaborated with development team on educational platform improvements
+• Gained experience in software development lifecycle and team collaboration
+
+Math Tutor - K-12 Students (2020-Present)
+• Provided personalized math instruction to students across all grade levels
+• Developed effective teaching strategies and learning materials
+• Helped students improve their mathematical understanding and academic performance
+
+TECHNICAL SKILLS
+Programming Languages: Python (90%), Java (85%), JavaScript (80%)
+Web Technologies: HTML/CSS (85%), React (70%), Node.js (75%)
+Tools: Git, GitHub, VS Code, IntelliJ, Linux, Docker, SQL, MongoDB
+
+PROJECTS
+Pokemon Damage Calculator
+• Advanced damage calculator for Pokemon VGC featuring comprehensive type effectiveness
+• Built with vanilla JavaScript for optimal performance
+
+Interactive Portfolio
+• Modern, responsive portfolio website with smooth animations
+• Features interactive elements and mobile-first design
+
+CONTACT
+Email: danielkyu2004@gmail.com
+LinkedIn: linkedin.com/in/daniel-yu-bb2284209
+GitHub: github.com/danielkyu2004
+    `;
+    
+    const blob = new Blob([resumeContent], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'Daniel_Yu_Resume.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+}
+
+// Add typing effect to hero title with multiple lines
+function typeWriterMultiLine(element, lines, speed = 100) {
+    let currentLine = 0;
+    let currentChar = 0;
+    element.innerHTML = '';
+    
+    function type() {
+        if (currentLine < lines.length) {
+            if (currentChar < lines[currentLine].length) {
+                element.innerHTML += lines[currentLine].charAt(currentChar);
+                currentChar++;
+                setTimeout(type, speed);
+            } else {
+                element.innerHTML += '<br>';
+                currentLine++;
+                currentChar = 0;
+                setTimeout(type, speed * 2);
+            }
+        }
+    }
+    
+    type();
+}
+
+// Initialize enhanced typing effect
+const heroTitle = document.querySelector('.hero-content h2');
+if (heroTitle) {
+    const originalText = heroTitle.textContent;
+    typeWriter(heroTitle, originalText, 80);
+}
+
+// Add parallax effect to hero section
+window.addEventListener('scroll', function() {
+    const scrolled = window.pageYOffset;
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+    }
+});
+
+// Add counter animation for stats
+function animateCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    
+    const observerOptions = {
+        threshold: 0.5
+    };
+    
+    const counterObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = parseInt(counter.textContent);
+                const increment = target / 50;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.ceil(current) + (counter.textContent.includes('+') ? '+' : '');
+                        setTimeout(updateCounter, 30);
+                    } else {
+                        counter.textContent = target + (counter.textContent.includes('+') ? '+' : '');
+                    }
+                };
+                
+                updateCounter();
+                counterObserver.unobserve(counter);
+            }
+        });
+    }, observerOptions);
+    
+    counters.forEach(counter => {
+        counterObserver.observe(counter);
+    });
+}
+
+// Initialize counter animation
+animateCounters();

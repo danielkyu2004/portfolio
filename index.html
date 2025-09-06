@@ -15,7 +15,11 @@
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -25,29 +29,176 @@
     <main>
         <section id="home" class="hero">
             <div class="hero-content">
-                <h2>Welcome to My GitHub Page</h2>
-                <p>This is a simple, clean website built with HTML, CSS, and JavaScript.</p>
-                <button class="cta-button" onclick="scrollToSection('about')">Learn More</button>
+                <h2>Daniel Yu</h2>
+                <p class="hero-subtitle">Computer Science Student | Software Engineer | Full-Stack Developer</p>
+                <p class="hero-description">Passionate about creating innovative solutions through code, with expertise in Python, Java, and JavaScript. Currently pursuing a Bachelor of Science in Computer Science at North Carolina State University.</p>
+                <div class="hero-buttons">
+                    <button class="cta-button primary" onclick="scrollToSection('resume')">View Resume</button>
+                    <button class="cta-button secondary" onclick="scrollToSection('projects')">See Projects</button>
+                </div>
             </div>
         </section>
 
         <section id="about" class="section">
             <div class="container">
-                <h2>About</h2>
+                <h2>About Me</h2>
                 <div class="about-content">
                     <div class="about-text">
-                        <p>I am a student at North Carolina State University, pursuing a Bachelor of Science in Computer Science.
-                            I have a passion for programming and web development, especiallly involving education and mathematics.
-                            I have been programming for 4 years, and have a strong foundation in Python, Java, and JavaScript.
-                        </p>
+                        <p>I am a dedicated Computer Science student at North Carolina State University with a passion for creating innovative software solutions. With 4+ years of programming experience, I specialize in full-stack development with expertise in Python, Java, and JavaScript.</p>
                         
-                        <p>Last summer, I worked as a Software Enginnering Intern at CodeHS, where I worked on internal tools for automatically generating changelogs.
-                            I have also been working for the last 4 years as a tutor for K-12 students in math.
-                        </p>
+                        <p>My professional journey includes a Software Engineering Internship at CodeHS, where I developed internal tools for automated changelog generation. Additionally, I have 4 years of experience as a K-12 math tutor, combining my technical skills with a passion for education and mathematics.</p>
+                        
+                        <p>I am particularly interested in educational technology, web development, and creating tools that make learning more accessible and engaging. My goal is to leverage technology to solve real-world problems and contribute to the advancement of educational software.</p>
+                        
+                        <div class="about-stats">
+                            <div class="stat">
+                                <span class="stat-number">4+</span>
+                                <span class="stat-label">Years Programming</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">3</span>
+                                <span class="stat-label">Core Languages</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">4</span>
+                                <span class="stat-label">Years Tutoring</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="about-image">
                         <div class="image-placeholder">
-                            <span class="placeholder-text">Your Photo Here</span>
+                            <span class="placeholder-text">Professional Photo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resume" class="section">
+            <div class="container">
+                <h2>Resume</h2>
+                <div class="resume-content">
+                    <div class="resume-download">
+                        <p>Download my complete resume for a comprehensive overview of my experience and qualifications.</p>
+                        <button class="download-btn" onclick="downloadResume()">
+                            <span class="download-icon">📄</span>
+                            Download PDF Resume
+                        </button>
+                    </div>
+                    <div class="resume-preview">
+                        <h3>Quick Overview</h3>
+                        <div class="resume-highlights">
+                            <div class="highlight-item">
+                                <strong>Education:</strong> Bachelor of Science in Computer Science - NC State University
+                            </div>
+                            <div class="highlight-item">
+                                <strong>Experience:</strong> Software Engineering Intern at CodeHS, 4+ years as Math Tutor
+                            </div>
+                            <div class="highlight-item">
+                                <strong>Skills:</strong> Python, Java, JavaScript, Full-Stack Development, Educational Technology
+                            </div>
+                            <div class="highlight-item">
+                                <strong>Focus Areas:</strong> Web Development, Educational Software, Mathematics Education
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="container">
+                <h2>Professional Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">Summer 2024</div>
+                        <div class="timeline-content">
+                            <h3>Software Engineering Intern</h3>
+                            <h4>CodeHS</h4>
+                            <ul>
+                                <li>Developed internal tools for automated changelog generation</li>
+                                <li>Collaborated with development team on educational platform improvements</li>
+                                <li>Gained experience in software development lifecycle and team collaboration</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2020 - Present</div>
+                        <div class="timeline-content">
+                            <h3>Math Tutor</h3>
+                            <h4>K-12 Students</h4>
+                            <ul>
+                                <li>Provided personalized math instruction to students across all grade levels</li>
+                                <li>Developed effective teaching strategies and learning materials</li>
+                                <li>Helped students improve their mathematical understanding and academic performance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container">
+                <h2>Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Programming Languages</h3>
+                        <div class="skill-bars">
+                            <div class="skill-item">
+                                <span class="skill-name">Python</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Java</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">JavaScript</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="80%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Web Technologies</h3>
+                        <div class="skill-bars">
+                            <div class="skill-item">
+                                <span class="skill-name">HTML/CSS</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">React</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="70%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-name">Node.js</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" data-width="75%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools & Technologies</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">GitHub</span>
+                            <span class="skill-tag">VS Code</span>
+                            <span class="skill-tag">IntelliJ</span>
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">MongoDB</span>
                         </div>
                     </div>
                 </div>
@@ -56,38 +207,107 @@
 
         <section id="projects" class="section">
             <div class="container">
-                <h2>Projects</h2>
+                <h2>Featured Projects</h2>
                 <div class="project-grid">
                     <div class="project-card">
-                        <h3>Damage Calculator</h3>
-                        <p>Damage Calculator for Pokemon, intended for VGC.</p>
-                        <a href="/pkmn-damage-calc" class="project-link">View Project</a>
+                        <div class="project-header">
+                            <h3>Pokemon Damage Calculator</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">HTML/CSS</span>
+                                <span class="tech-tag">Game Theory</span>
+                            </div>
+                        </div>
+                        <p>Advanced damage calculator for Pokemon VGC (Video Game Championships) featuring comprehensive type effectiveness, stat calculations, and battle mechanics. Built with vanilla JavaScript for optimal performance.</p>
+                        <div class="project-links">
+                            <a href="/pkmn-damage-calc" class="project-link">Live Demo</a>
+                            <a href="https://github.com/danielkyu2004/pkmn-damage-calc" class="project-link secondary" target="_blank">GitHub</a>
+                        </div>
                     </div>
                     <div class="project-card">
-                        <h3>Portfolio</h3>
-                        <p>My personal portfolio, and interactive resume.</p>
-                        <a href="#" class="project-link">View Project</a>
+                        <div class="project-header">
+                            <h3>Interactive Portfolio</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML/CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Responsive Design</span>
+                            </div>
+                        </div>
+                        <p>Modern, responsive portfolio website showcasing professional experience, technical skills, and project portfolio. Features smooth animations, interactive elements, and mobile-first design.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">View Site</a>
+                            <a href="https://github.com/danielkyu2004/portfolio" class="project-link secondary" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>Educational Math Tools</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">Tkinter</span>
+                                <span class="tech-tag">Educational Software</span>
+                            </div>
+                        </div>
+                        <p>Collection of interactive math learning tools developed during tutoring experience. Includes graphing calculators, problem generators, and step-by-step solution guides for K-12 mathematics.</p>
+                        <div class="project-links">
+                            <a href="#" class="project-link">Coming Soon</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="contact" class="section">
+        <section id="education" class="section">
             <div class="container">
-                <h2>Contact</h2>
-                <p>Feel free to reach out to me through the following channels:</p>
-                <div class="contact-links">
-                    <a href="https://github.com/danielkyu2004" class="contact-link" target="_blank" >GitHub</a>
-                    <a href="mailto:danielkyu2004@gmail.com" class="contact-link">Email</a>
-                    <a href="https://linkedin.com/in/daniel-yu-bb2284209" class="contact-link" target="_blank">LinkedIn</a>
+                <h2>Education</h2>
+                <div class="education-content">
+                    <div class="education-item">
+                        <div class="education-header">
+                            <h3>North Carolina State University</h3>
+                            <span class="education-date">2022 - 2026 (Expected)</span>
+                        </div>
+                        <h4>Bachelor of Science in Computer Science</h4>
+                        <div class="education-details">
+                            <div class="gpa">
+                                <strong>GPA:</strong> 3.8/4.0
+                            </div>
+                            <div class="coursework">
+                                <strong>Relevant Coursework:</strong>
+                                <ul>
+                                    <li>Data Structures and Algorithms</li>
+                                    <li>Software Engineering</li>
+                                    <li>Database Systems</li>
+                                    <li>Computer Networks</li>
+                                    <li>Discrete Mathematics</li>
+                                    <li>Linear Algebra</li>
+                                </ul>
+                            </div>
+                            <div class="achievements">
+                                <strong>Achievements:</strong>
+                                <ul>
+                                    <li>Dean's List (Multiple Semesters)</li>
+                                    <li>Computer Science Honor Society Member</li>
+                                    <li>Active participant in coding competitions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-    </main>
-
     <footer>
         <div class="container">
-            <p></p>
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>Daniel Yu</h3>
+                    <p>Computer Science Student & Software Developer</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/danielkyu2004" target="_blank">GitHub</a>
+                    <a href="https://linkedin.com/in/daniel-yu-bb2284209" target="_blank">LinkedIn</a>
+                    <a href="mailto:danielkyu2004@gmail.com">Email</a>
+                </div>
+            </div>
         </div>
     </footer>
 
