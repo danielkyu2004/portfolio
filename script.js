@@ -1,5 +1,170 @@
+// ========================================
+// FUNCTION DEFINITIONS
+// ========================================
+
+// Function to scroll to a specific section (used by CTA button)
+function scrollToSection(sectionId) {
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) {
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const targetPosition = targetSection.offsetTop - headerHeight;
+        
+        window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+        });
+    }
+}
+
+// Add typing effect to hero title
+function typeWriter(element, text, speed = 100) {
+    let i = 0;
+    element.innerHTML = '';
+    
+    function type() {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    
+    type();
+}
+
+// Add typing effect to hero title with multiple lines
+function typeWriterMultiLine(element, lines, speed = 100) {
+    let currentLine = 0;
+    let currentChar = 0;
+    element.innerHTML = '';
+    
+    function type() {
+        if (currentLine < lines.length) {
+            if (currentChar < lines[currentLine].length) {
+                element.innerHTML += lines[currentLine].charAt(currentChar);
+                currentChar++;
+                setTimeout(type, speed);
+            } else {
+                element.innerHTML += '<br>';
+                currentLine++;
+                currentChar = 0;
+                setTimeout(type, speed * 2);
+            }
+        }
+    }
+    
+    type();
+}
+
+// Add scroll-to-top functionality
+function addScrollToTop() {
+    const scrollToTopBtn = document.createElement('button');
+    scrollToTopBtn.innerHTML = '↑';
+    scrollToTopBtn.className = 'scroll-to-top';
+    scrollToTopBtn.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1000;
+    `;
+    
+    document.body.appendChild(scrollToTopBtn);
+    
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 300) {
+            scrollToTopBtn.style.opacity = '1';
+            scrollToTopBtn.style.visibility = 'visible';
+        } else {
+            scrollToTopBtn.style.opacity = '0';
+            scrollToTopBtn.style.visibility = 'hidden';
+        }
+    });
+    
+    scrollToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
+
+// Animate skill bars on scroll
+function animateSkillBars() {
+    const skillBars = document.querySelectorAll('.skill-progress');
+    
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -100px 0px'
+    };
+    
+    const skillObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const width = entry.target.getAttribute('data-width');
+                entry.target.style.width = width;
+            }
+        });
+    }, observerOptions);
+    
+    skillBars.forEach(bar => {
+        skillObserver.observe(bar);
+    });
+}
+
+// Add counter animation for stats
+function animateCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    
+    const observerOptions = {
+        threshold: 0.5
+    };
+    
+    const counterObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = parseInt(counter.textContent);
+                const increment = target / 50;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.ceil(current) + (counter.textContent.includes('+') ? '+' : '');
+                        setTimeout(updateCounter, 30);
+                    } else {
+                        counter.textContent = target + (counter.textContent.includes('+') ? '+' : '');
+                    }
+                };
+                
+                updateCounter();
+                counterObserver.unobserve(counter);
+            }
+        });
+    }, observerOptions);
+    
+    counters.forEach(counter => {
+        counterObserver.observe(counter);
+    });
+}
+
+
+// ========================================
+// EVENT LISTENERS AND SETUP
+// ========================================
+
 // Smooth scrolling for navigation links
-// Get all navigation links
 const navLinks = document.querySelectorAll('.nav-links a');
 
 navLinks.forEach(link => {
@@ -20,20 +185,6 @@ navLinks.forEach(link => {
         }
     });
 });
-
-// Function to scroll to a specific section (used by CTA button)
-function scrollToSection(sectionId) {
-    const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-        const headerHeight = document.querySelector('header').offsetHeight;
-        const targetPosition = targetSection.offsetTop - headerHeight;
-        
-        window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-        });
-    }
-}
 
 // Add active class to navigation links based on scroll position
 window.addEventListener('scroll', function() {
@@ -84,29 +235,6 @@ projectCards.forEach(card => {
     card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(card);
 });
-
-// Add typing effect to hero title
-function typeWriter(element, text, speed = 100) {
-    let i = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            setTimeout(type, speed);
-        }
-    }
-    
-    type();
-}
-
-// Initialize typing effect when page loads
-const heroTitle = document.querySelector('.hero-content h2');
-if (heroTitle) {
-    const originalText = heroTitle.textContent;
-    typeWriter(heroTitle, originalText, 80);
-}
 
 // Add click effect to buttons
 const buttons = document.querySelectorAll('button, .project-link, .contact-link');
@@ -164,163 +292,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Add scroll-to-top functionality
-function addScrollToTop() {
-    const scrollToTopBtn = document.createElement('button');
-    scrollToTopBtn.innerHTML = '↑';
-    scrollToTopBtn.className = 'scroll-to-top';
-    scrollToTopBtn.style.cssText = `
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: #3498db;
-        color: white;
-        border: none;
-        font-size: 20px;
-        cursor: pointer;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 1000;
-    `;
-    
-    document.body.appendChild(scrollToTopBtn);
-    
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            scrollToTopBtn.style.opacity = '1';
-            scrollToTopBtn.style.visibility = 'visible';
-        } else {
-            scrollToTopBtn.style.opacity = '0';
-            scrollToTopBtn.style.visibility = 'hidden';
-        }
-    });
-    
-    scrollToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-}
-
-// Initialize scroll-to-top button
-addScrollToTop();
-
-// Animate skill bars on scroll
-function animateSkillBars() {
-    const skillBars = document.querySelectorAll('.skill-progress');
-    
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px 0px -100px 0px'
-    };
-    
-    const skillObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const width = entry.target.getAttribute('data-width');
-                entry.target.style.width = width;
-            }
-        });
-    }, observerOptions);
-    
-    skillBars.forEach(bar => {
-        skillObserver.observe(bar);
-    });
-}
-
-// Initialize skill bar animation
-animateSkillBars();
-
-// Download resume function
-function downloadResume() {
-    // Create a simple text-based resume for now
-    const resumeContent = `
-DANIEL YU
-Computer Science Student | Software Developer
-
-EDUCATION
-North Carolina State University
-Bachelor of Science in Computer Science (2022-2026)
-GPA: 3.8/4.0
-
-EXPERIENCE
-Software Engineering Intern - CodeHS (Summer 2024)
-• Developed internal tools for automated changelog generation
-• Collaborated with development team on educational platform improvements
-• Gained experience in software development lifecycle and team collaboration
-
-Math Tutor - K-12 Students (2020-Present)
-• Provided personalized math instruction to students across all grade levels
-• Developed effective teaching strategies and learning materials
-• Helped students improve their mathematical understanding and academic performance
-
-TECHNICAL SKILLS
-Programming Languages: Python (90%), Java (85%), JavaScript (80%)
-Web Technologies: HTML/CSS (85%), React (70%), Node.js (75%)
-Tools: Git, GitHub, VS Code, IntelliJ, Linux, Docker, SQL, MongoDB
-
-PROJECTS
-Pokemon Damage Calculator
-• Advanced damage calculator for Pokemon VGC featuring comprehensive type effectiveness
-• Built with vanilla JavaScript for optimal performance
-
-Interactive Portfolio
-• Modern, responsive portfolio website with smooth animations
-• Features interactive elements and mobile-first design
-
-CONTACT
-Email: danielkyu2004@gmail.com
-LinkedIn: linkedin.com/in/daniel-yu-bb2284209
-GitHub: github.com/danielkyu2004
-    `;
-    
-    const blob = new Blob([resumeContent], { type: 'text/plain' });
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'Daniel_Yu_Resume.txt';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    window.URL.revokeObjectURL(url);
-}
-
-// Add typing effect to hero title with multiple lines
-function typeWriterMultiLine(element, lines, speed = 100) {
-    let currentLine = 0;
-    let currentChar = 0;
-    element.innerHTML = '';
-    
-    function type() {
-        if (currentLine < lines.length) {
-            if (currentChar < lines[currentLine].length) {
-                element.innerHTML += lines[currentLine].charAt(currentChar);
-                currentChar++;
-                setTimeout(type, speed);
-            } else {
-                element.innerHTML += '<br>';
-                currentLine++;
-                currentChar = 0;
-                setTimeout(type, speed * 2);
-            }
-        }
-    }
-    
-    type();
-}
-
-// Initialize enhanced typing effect
-const heroTitle = document.querySelector('.hero-content h2');
-if (heroTitle) {
-    const originalText = heroTitle.textContent;
-    typeWriter(heroTitle, originalText, 80);
-}
-
 // Add parallax effect to hero section
 window.addEventListener('scroll', function() {
     const scrolled = window.pageYOffset;
@@ -330,42 +301,22 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// Add counter animation for stats
-function animateCounters() {
-    const counters = document.querySelectorAll('.stat-number');
-    
-    const observerOptions = {
-        threshold: 0.5
-    };
-    
-    const counterObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                const target = parseInt(counter.textContent);
-                const increment = target / 50;
-                let current = 0;
-                
-                const updateCounter = () => {
-                    if (current < target) {
-                        current += increment;
-                        counter.textContent = Math.ceil(current) + (counter.textContent.includes('+') ? '+' : '');
-                        setTimeout(updateCounter, 30);
-                    } else {
-                        counter.textContent = target + (counter.textContent.includes('+') ? '+' : '');
-                    }
-                };
-                
-                updateCounter();
-                counterObserver.unobserve(counter);
-            }
-        });
-    }, observerOptions);
-    
-    counters.forEach(counter => {
-        counterObserver.observe(counter);
-    });
+// ========================================
+// INITIALIZATION FUNCTIONS
+// ========================================
+
+// Initialize typing effect
+const heroTitle = document.querySelector('.hero-content h2');
+if (heroTitle) {
+    const originalText = heroTitle.textContent;
+    typeWriter(heroTitle, originalText, 80);
 }
+
+// Initialize scroll-to-top button
+addScrollToTop();
+
+// Initialize skill bar animation
+animateSkillBars();
 
 // Initialize counter animation
 animateCounters();
