@@ -523,11 +523,20 @@ main {
     font-size: 1rem;
 }
 
-.education-item h4 {
+.degree-gpa {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 30px;
+}
+
+.degree-gpa h4 {
     color: #666;
     font-size: 1.2rem;
-    margin-bottom: 25px;
+    margin: 0;
     font-weight: 500;
+    flex: 1;
 }
 
 .education-details {
@@ -537,16 +546,33 @@ main {
 }
 
 .gpa {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 10px;
+    min-width: 300px;
+}
+
+.gpa-text {
     text-align: center;
+    margin-bottom: 8px;
+}
+
+.gpa-text strong {
+    color: #2E1919;
+    font-size: 0.9rem;
+}
+
+.gpa-bar {
+    width: 100%;
+    height: 10px;
+    background: #e9ecef;
+    border-radius: 5px;
+    overflow: hidden;
     border: 2px solid #F76C68;
 }
 
-.gpa strong {
-    color: #2E1919;
-    font-size: 1.1rem;
+.gpa-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #F76C68, #2E1919);
+    border-radius: 3px;
+    transition: width 1.5s ease-in-out;
 }
 
 .coursework, .achievements {
@@ -728,6 +754,17 @@ footer {
     .education-header {
         flex-direction: column;
         align-items: flex-start;
+    }
+    
+    .degree-gpa {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .gpa {
+        min-width: auto;
+        width: 100%;
     }
     
     .education-details {
