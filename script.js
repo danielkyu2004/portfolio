@@ -100,42 +100,6 @@ function addScrollToTop() {
 }
 
 
-// Add counter animation for stats
-function animateCounters() {
-    const counters = document.querySelectorAll('.stat-number');
-    
-    const observerOptions = {
-        threshold: 0.5
-    };
-    
-    const counterObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                const target = parseInt(counter.textContent);
-                const increment = target / 50;
-                let current = 0;
-                
-                const updateCounter = () => {
-                    if (current < target) {
-                        current += increment;
-                        counter.textContent = Math.ceil(current) + (counter.textContent.includes('+') ? '+' : '');
-                        setTimeout(updateCounter, 30);
-                    } else {
-                        counter.textContent = target + (counter.textContent.includes('+') ? '+' : '');
-                    }
-                };
-                
-                updateCounter();
-                counterObserver.unobserve(counter);
-            }
-        });
-    }, observerOptions);
-    
-    counters.forEach(counter => {
-        counterObserver.observe(counter);
-    });
-}
 
 
 // ========================================
@@ -293,6 +257,3 @@ if (heroTitle) {
 // Initialize scroll-to-top button
 addScrollToTop();
 
-
-// Initialize counter animation
-animateCounters();
