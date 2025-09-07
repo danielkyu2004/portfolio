@@ -99,28 +99,6 @@ function addScrollToTop() {
     });
 }
 
-// Animate skill bars on scroll
-function animateSkillBars() {
-    const skillBars = document.querySelectorAll('.skill-progress');
-    
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px 0px -100px 0px'
-    };
-    
-    const skillObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const width = entry.target.getAttribute('data-width');
-                entry.target.style.width = width;
-            }
-        });
-    }, observerOptions);
-    
-    skillBars.forEach(bar => {
-        skillObserver.observe(bar);
-    });
-}
 
 // Add counter animation for stats
 function animateCounters() {
@@ -315,8 +293,6 @@ if (heroTitle) {
 // Initialize scroll-to-top button
 addScrollToTop();
 
-// Initialize skill bar animation
-animateSkillBars();
 
 // Initialize counter animation
 animateCounters();

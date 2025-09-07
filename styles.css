@@ -371,50 +371,6 @@ main {
     text-align: center;
 }
 
-.skill-bars {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.skill-item {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.skill-name {
-    font-weight: 600;
-    color: #333;
-    font-size: 1rem;
-}
-
-.skill-bar {
-    height: 8px;
-    background: #e9ecef;
-    border-radius: 4px;
-    overflow: hidden;
-    position: relative;
-}
-
-.skill-progress {
-    height: 100%;
-    background: linear-gradient(90deg, #F76C68, #2E1919);
-    border-radius: 4px;
-    width: 0%;
-    transition: width 1.5s ease-in-out;
-    position: relative;
-}
-
-.skill-progress::after {
-    content: attr(data-width);
-    position: absolute;
-    right: 10px;
-    top: -25px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #2E1919;
-}
 
 .skill-tags {
     display: flex;
